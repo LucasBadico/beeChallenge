@@ -4,7 +4,8 @@
   "description": "A small challenge proposed by beeTech team.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --colors -b --verbose"
+    "test": "jest --colors -b --verbose",
+    "dev": "babel-node"
   },
   "repository": {
     "type": "git",
@@ -40,28 +41,32 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "jest-webpack-alias": "^3.3.3"
-  },
-  "dependencies": {
+    "jest-webpack-alias": "^3.3.3",
     "babel-cli": "^6.26.0",
     "babel-jest": "^22.4.3",
     "babel-plugin-module-resolver": "^3.1.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "co-supertest": "^0.0.10",
+    "react-hot-loader": "^4.0.0",
+    "enzyme-adapter-react-16": "^1.1.1"    
+  },
+  "dependencies": {
     "cote": "^0.16.2",
-    "enzyme-adapter-react-16": "^1.1.1",
     "global": "^4.3.2",
     "jest": "^22.4.3",
     "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
     "moment": "^2.17.0",
     "ramda": "^0.25.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-hot-loader": "^4.0.0",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
-    "rxjs": "^5.4.3"
+    "rxjs": "^5.4.3",
+    "socket.io": "^2.0.4",
+    "supertest": "^3.0.0"
   },
   "engines": {
     "node": ">=7.0.0",
