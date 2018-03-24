@@ -22,30 +22,44 @@ A small challenge proposed by beeTech team.
 ## Proposta de Desenvolvimento
 O documento do desafio propoe uma ui simples, apenas relacionando DDD a custos e capturando leads. O plano é entregar isso junto com a infra até sexta e dai iterar nessa base para ter algo com cara de produto.
 
-### Basica
-Um serviço que retorne o custo de ligação de diferente planos entre diferentes regiões.
-Uma UI que exponha esses custos e capture leads, nome, email e telefone, se é ou não cliente.
+Separei o projeto em 5 fases:
 
-### Iteração Web
+### 1 - Basica
+  Um serviço que retorne o custo de ligação de diferente planos entre diferentes regiões.
+  Uma UI que exponha esses custos e capture leads, nome, email e telefone, se é ou não cliente.
+
+### 2 - Iteração Web
   UI fazer com que tudo fique visual. Relacionar o DDD a regiao geografica e mostrar isso no mapa, uberlike.
   Deixar a UI sexy como o pipefy.
 
-
-### Mobile
+### 3 - Mobile
   Replicação da versão web em um app nativo.
 
-### Iteração Mobile
+### 4 - Iteração Mobile
  Que reconheça se o aparelho é da operadora. Captura o lead se nao for e liga direto da interface.
 
-### Iteração zoom
+### 5 - Iteração zoom
   A bee fez uma parceria com a zoom e agora oferece ligacoes via seu app com o serviço do zoom 
 
 ## Entregas
-- Basica - Scopo original, com o minimo de funcionamento necessário.
+- 1 - Basica, Scopo original, com o minimo de funcionamento necessário.
   prazo: sexta a noite.
-- Iteração Web - Adição de features na versão web.
+- 2 - Iteração Web, Adição de features na versão web.
   prazo: sábado a noite.
-- Mobile - Versão mobile, com as mesmas funcionalidades do web.
+- 3 - Mobile, Versão mobile, com as mesmas funcionalidades do web.
   prazo: segunda pela manhã.
-- Iteração Mobile - Adição de features especificas da versão mobile.
+- 4 - Iteração Mobile, Adição de features especificas da versão mobile.
   prazo: segunda a noite.
+- 5 - Iteração Zoom, add integração do zoom ao projeto.
+
+## Changelog
+
+
+## Arquitetura
+- microservices
+  - autenticação
+  - custo ddd
+  - captura de lead
+  - ddd to geolocalização
+  - graphql exposition
+  - hostedNumbers
