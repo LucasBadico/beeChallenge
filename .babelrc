@@ -35,7 +35,8 @@
           "module-resolver", {
             "root": ["./src"],
             "alias": {
-              "services": "./src/microservices"
+              "services": "./src/microservices",
+              "utils": "./src/utils"
             },
             "extensions": [".js", ".jsx"]
           }
