@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __test__/microservices/ddd-calculator
+  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/microservices/ddd-calculator
 
 PATH: 
   /Users/badicomac/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -5681,7 +5681,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest --colors -b --verbose __test__/microservices/ddd-calculator
+  Arguments: -c jest --colors -b --verbose __tests__/microservices/ddd-calculator
   Directory: /Users/badicomac/Repositorios/beeChallenge
   Output:
   
