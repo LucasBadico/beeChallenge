@@ -1,0 +1,96 @@
+{
+    "env": {
+      "browser": true,
+      "jest": true,
+      "jasmine": true
+    },
+    "globals": {
+      "APP_ENV": true,
+      "shallow": true,
+      "core": true,
+      "domain": true,
+      "jsdom": true,
+      "apolloMock": true
+    },
+    "parser": "babel-eslint",
+    "plugins": ["css-modules", "flowtype", "prettier"],
+    "extends": [
+      "airbnb",
+      "plugin:css-modules/recommended",
+      "plugin:flowtype/recommended",
+      "prettier",
+      "prettier/flowtype",
+      "prettier/react"
+    ],
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "webpack.config.js"
+        }
+      }
+    },
+    "rules": {
+      "arrow-parens": ["error", "as-needed", { "requireForBlockBody": false }],
+      "css-modules/no-unused-class": ["error", { "camelCase": true }],
+      "css-modules/no-undef-class": ["error", { "camelCase": true }],
+      "default-case": "off",
+      "flowtype/define-flow-type": "warn",
+      "function-paren-newline": ["off", { "minItems": 3 }],
+      "indent": [
+        "warn",
+        2,
+        {
+          "SwitchCase": 1,
+          "MemberExpression": 1,
+          "FunctionDeclaration": {
+            "body": 1,
+            "parameters": "off"
+          },
+          "FunctionExpression": {
+            "body": 1,
+            "parameters": "off"
+          },
+          "CallExpression": {
+            "arguments": "off"
+          },
+          "ArrayExpression": 1,
+          "ObjectExpression": 1,
+          "ignoredNodes": ["ConditionalExpression"]
+        }
+      ],
+      "import/prefer-default-export": "off",
+      "max-len": ["warn", 100, { "ignoreStrings": true }],
+      "no-underscore-dangle": ["warn", { "allow": ["__typename"], "allowAfterThis": true }],
+      "no-use-before-define": "warn",
+      "no-confusing-arrow": "off",
+      "no-empty": [2, { "allowEmptyCatch": true }],
+      "no-unused-vars": "warn",
+      "object-curly-newline": "off",
+      "prettier/prettier": "error",
+      "react/jsx-indent-props": ["warn", 2],
+      "react/jsx-indent": ["warn", 2],
+      "react/prop-types": "warn",
+      "react/jsx-filename-extension": "off",
+      "react/prefer-stateless-function": "off",
+      "react/no-array-index-key": "off",
+      "react/sort-comp": "off",
+      "react/require-default-props": "off",
+      "no-nested-ternary": "error",
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "components": ["Link"],
+          "specialLink": ["to"]
+        }
+      ],
+      "import/no-default-export": "error",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+          ]
+        }
+      ]
+    }
+  }
+  
