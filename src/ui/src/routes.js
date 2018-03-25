@@ -4,6 +4,6 @@ import LocalCounter from './containers/LocalCounter'
 
 export default (
   <Switch>
-    <Route path='/' component={() => <p>HELLO FROM REACT!</p>} />
+    <Route path='/hey' component={() => <p>HELLO FROM REACT!</p>} />
   </Switch>
 )

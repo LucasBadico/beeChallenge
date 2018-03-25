@@ -18,7 +18,6 @@ export default ({ initialState = {} }) => {
     initialState,
     compose(
       applyMiddleware(epicMiddleware),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
   return store;
