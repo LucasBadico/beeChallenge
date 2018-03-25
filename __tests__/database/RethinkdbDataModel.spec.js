@@ -1,11 +1,11 @@
 
-import { RethinkdbDataModel } from '$/RethinkdbDataModel'
+import { RethinkdbModel } from '$/RethinkdbModel'
 import * as R from 'ramda'
 
-describe('RethinkdbDataModel class', () => {
+describe('RethinkdbModel class', () => {
     describe('instanciated directly as \'dataModel\'', () => {
-        const dataModel = new RethinkdbDataModel({
-            table: 'rethinkdbDataModelSpec',
+        const dataModel = new RethinkdbModel({
+            table: 'rethinkdbModelSpec',
             schema: [ 'foo', 'bar'],
         })
         // test instanceof
@@ -18,10 +18,10 @@ describe('RethinkdbDataModel class', () => {
             done()
         })
 
-        it('should \'dataModel.table\' be \'rethinkdbDataModelSpec\'', async done => {
+        it('should \'dataModel.table\' be \'rethinkdbModelSpec\'', async done => {
             expect.assertions(1)
             const { table } = dataModel
-            expect(table).toBe('rethinkdbDataModelSpec')
+            expect(table).toBe('rethinkdbModelSpec')
             done()
         })
 
