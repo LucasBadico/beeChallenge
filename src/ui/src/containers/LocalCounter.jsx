@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { addCount } from '../store/actions'
 import { Link } from 'react-router'
@@ -22,8 +23,8 @@ function LocalCounter({ count, onAddCount }) {
 }
 
 LocalCounter.propTypes = {
-  count: React.PropTypes.number.isRequired,
-  onAddCount: React.PropTypes.func.isRequired
+  count: PropTypes.number.isRequired,
+  onAddCount: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ count }) => ({
