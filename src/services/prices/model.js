@@ -1,14 +1,15 @@
 
-import { RethinkdbDataModel } from  '../../database/RethinkdbDataModel.js'
+import { RethinkdbModel } from  '../../database/RethinkdbModel.js'
 
-class PricesModel extends RethinkdbDataModel {
+class PricesModel extends RethinkdbModel {
     setNewThing(data) { // for futurre references
         this.newThing = data
     }
 }
 
-const prices = new PricesModel({
+const model = new PricesModel({
 	schema: ['costByMinute','destination','origin'],
 	table: 'prices'
 })
-export default prices
+
+export default model

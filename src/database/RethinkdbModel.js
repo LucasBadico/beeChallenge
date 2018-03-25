@@ -2,7 +2,7 @@ import db from './'
 
 const r = db()
 
-export class RethinkdbDataModel {
+export class RethinkdbModel {
     constructor({
         table,
         schema,

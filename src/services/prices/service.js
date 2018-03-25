@@ -5,7 +5,6 @@ import { Sockend } from 'cote'
 import { createServer } from 'http'
 import socket from 'socket.io'
 
-
 const app = new Koa()
 const router = new Router()
 const server = createServer(app.callback())
