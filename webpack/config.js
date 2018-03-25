@@ -26,7 +26,7 @@ const config = {
   module: {
     rules: [
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.css$/, loader: 'style-loader!css' },
+      { test: /\.less$/, include: /styles/, loader: 'style!css!less' },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
