@@ -2,8 +2,16 @@
 import { RethinkdbModel } from  '../../database/RethinkdbModel.js'
 
 class PricesModel extends RethinkdbModel {
-    setNewThing(data) { // for futurre references
-        this.newThing = data
+   async getByOrigin(origin) { // for futurre references
+        return await this.dbtable()
+        .filter({origin})
+        .run();
+    }
+
+    async getByDestination(destination) { // for futurre references
+        return await this.dbtable()
+        .filter({ destination })
+        .run();
     }
 }
 

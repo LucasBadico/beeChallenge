@@ -10,18 +10,20 @@ export class RethinkdbModel {
         this.table = table
         this.schema = [...schema, 'created_at','updated_at']
     }
-
+    dbtable() {
+        return r.table(this.table)
+    }
     getSchema() {
         return this.schema
     }
 
     async getAll() {
-        const all = await r.table(this.table).run()
+        const all = await this.dbtable().run()
         return all
     }
 
     async getById(id) {
-        const result =  await r.table(this.table)
+        const result = await this.dbtable()
 			.get(id)
 			.run();
 	    return result
@@ -29,7 +31,7 @@ export class RethinkdbModel {
 
     async update(id, data) {
         data.updated_at = r.now();
-        const result = await r.table(this.table)
+        const result = await this.dbtable()
                 .get(id)
                 .update(data)
                 .run();
@@ -37,8 +39,8 @@ export class RethinkdbModel {
         return result;
     }
 
-    async save(data) {
-        const result = await r.table(this.table)
+    async create(data) {
+        const result = await this.dbtable()
                 .insert({
                     ...data,
                     created_at: r.now(),
