@@ -2,6 +2,10 @@ import db from './'
 
 const r = db()
 
+/*
+* @TODO, make schema and table private props
+*
+*/
 export class RethinkdbModel {
     constructor({
         table,

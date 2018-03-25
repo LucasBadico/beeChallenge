@@ -1,6 +1,5 @@
 import * as R from 'ramda'
 import model from './model'
-import { EROFS } from 'constants';
 
 class Price {
     constructor(props){
@@ -78,3 +77,5 @@ class Price {
     }
 
 }
+
+export default Price
