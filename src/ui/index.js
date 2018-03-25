@@ -5,6 +5,7 @@ import { Sockend } from 'cote'
 import { createServer } from 'http'
 import socket from 'socket.io'
 import render from './renderer'
+import 'ignore-styles'
 
 const app = new Koa()
 const server = createServer(app.callback())
