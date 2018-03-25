@@ -2,8 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { routerReducer } from 'react-router-redux';
 
-import * as reducers from './store/reducers';
-import * as epics from './store/epics';
+import * as reducers from './reducers';
+import * as epics from './epics';
 
 
 const rootEpic = combineEpics(...epics);
