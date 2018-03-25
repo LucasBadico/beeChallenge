@@ -23,9 +23,12 @@
   },
   "homepage": "https://github.com/LucasBadico/beeChallenge#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-module-resolver": "^3.1.0",
     "babel-plugin-ramda": "^1.4.3",
     "babel-plugin-react-element-info": "^1.0.1",
     "babel-plugin-reflective-import": "^1.1.0",
@@ -36,21 +39,18 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "co-supertest": "^0.0.10",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "jest-webpack-alias": "^3.3.3",
-    "babel-cli": "^6.26.0",
-    "babel-jest": "^22.4.3",
-    "babel-plugin-module-resolver": "^3.1.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "co-supertest": "^0.0.10",
-    "react-hot-loader": "^4.0.0",
-    "enzyme-adapter-react-16": "^1.1.1"    
+    "react-hot-loader": "^4.0.0"
   },
   "dependencies": {
     "cote": "^0.16.2",
@@ -58,6 +58,7 @@
     "jest": "^22.4.3",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
+    "koa-views": "^6.1.4",
     "moment": "^2.17.0",
     "ramda": "^0.25.0",
     "react": "^16.0.0",
@@ -90,7 +91,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run format-on-commit && npm run test"
+      "pre-push": "npm run test"
     }
   }
 }
