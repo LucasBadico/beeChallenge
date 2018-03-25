@@ -1,6 +1,6 @@
 import db from './'
 
-const r = db(),
+const r = db()
 
 export class RethinkdbDataModel {
     constructor({
