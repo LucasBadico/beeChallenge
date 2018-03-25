@@ -30,6 +30,7 @@
     "dev": {
       "plugins": [
         "react-hot-loader/babel",
+        "transform-es2015-modules-commonjs",
         ["react-element-info", {"prefix": "e2e"}],
         [
           "module-resolver", {
