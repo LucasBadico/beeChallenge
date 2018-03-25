@@ -1,7 +1,10 @@
 
 import { RethinkdbModel } from  '../../database/RethinkdbModel.js'
 
-class PricesModel extends RethinkdbModel {
+class PriceModel extends RethinkdbModel {
+    constructor(opts){
+        super(opts)
+    }
    async getByOrigin(origin) { // for futurre references
         return await this.dbtable()
         .filter({origin})
@@ -15,9 +18,12 @@ class PricesModel extends RethinkdbModel {
     }
 }
 
-const model = new PricesModel({
+const model = new PriceModel({
 	schema: ['costByMinute','destination','origin'],
 	table: 'prices'
 })
 
+export {
+    PriceModel,
+}
 export default model
