@@ -4,8 +4,20 @@
   "description": "A small challenge proposed by beeTech team.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --colors -b --verbose",
-    "dev": "babel-node"
+    "clean": "rm -rf $OUTPUT_DIR",
+    "prod-build-client": "webpack --config ./webpack/config.js",
+    "prod-build-server": "babel ./src -d $OUTPUT_DIR/server --source-maps",
+    "prod-build": "npm run clean && npm run prod-build-client && npm run prod-build-server",
+    "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
+    "start": "node $OUTPUT_DIR/server/server",
+    "predev-start": "npm run clean",
+    "dev-start": "nodemon -e js,jsx,md,mustache -w ./src --exec ./dev-tools/babel-run -- ./src/server",
+    "dev": "nf start -w --procfile ./dev-tools/Procfile.dev",
+    "test": "jest --colors -b --verbose  --forceExit",
+    "hot-dev-server": "webpack-dev-server --content-base public -ds --config webpack.config.js --hot --progress --colors --inline",
+    "ui": "npm run hot-dev-server",
+    "dev1": "./node_modules/.bin/nodemon src/server/app.js",
+    "prd1": "pm2 start src/server/app.js"
   },
   "repository": {
     "type": "git",
@@ -13,8 +25,7 @@
   },
   "keywords": [
     "microservices",
-    "react",
-    "react-native"
+    "react"
   ],
   "author": "LucasBadico",
   "license": "ISC",
@@ -49,26 +60,39 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
+    "husky": "^0.15.0-rc.8",
     "jest-webpack-alias": "^3.3.3",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "css-loader": "^0.28.11",
+    "nodemon": "^1.17.2",
+    "supertest": "^3.0.0",
+    "webpack": "^4.2.0",
+    "webpack-dev-server": "^3.1.1",
     "react-hot-loader": "^4.0.0"
   },
   "dependencies": {
     "cote": "^0.16.2",
     "global": "^4.3.2",
-    "husky": "^0.14.3",
+    "html-loader": "^0.5.5",
     "jest": "^22.4.3",
     "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
+    "koa-compress": "^2.0.0",
+    "koa-proxy": "^0.9.0",
     "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
     "moment": "^2.17.0",
     "ramda": "^0.25.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-proxy-loader": "^0.3.5",
     "react-redux": "^5.0.4",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "rxjs": "^5.4.3",
-    "socket.io": "^2.0.4",
-    "supertest": "^3.0.0"
+    "socket.io": "^2.0.4"
   },
   "engines": {
     "node": ">=7.0.0",
