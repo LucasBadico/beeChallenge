@@ -1,17 +1,17 @@
 import {
     server,
     app,
-} from '$/ddd-calculator'
+} from '$/prices'
 
 import httpRequester from 'supertest'
 
 const request = httpRequester.agent(server)
 
-describe('Calculator app', () => {
+describe('Prices app', () => {
     it('should have a default \'Hello World! from koa\'', async done => {
         expect.assertions(1)
-        const helloFromRouter = await request.get('/hello')     
-        expect(helloFromRouter.text).toEqual('Hello World! from koa')
+        const helloFromApp = await request.get('/hello')     
+        expect(helloFromApp.text).toEqual('Hello World! from koa')
         done()
     })
-})
+  })

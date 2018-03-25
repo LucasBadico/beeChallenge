@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/database
+  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/services/ddd-calculator
 
 PATH: 
   /Users/badicomac/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -8872,7 +8872,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest --colors -b --verbose  --forceExit __tests__/database
+  Arguments: -c jest --colors -b --verbose  --forceExit __tests__/services/ddd-calculator
   Directory: /Users/badicomac/Repositorios/beeChallenge
   Output:
   
