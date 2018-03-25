@@ -11,11 +11,8 @@ const server = createServer(app.callback())
 const io = socket(server)
 
 app.keys = ['im a newer secret', 'i like turtle'];
-app.use(async ctx => {
-    ctx.body = 'Hello World! from koa';
-});
 
-// app.use(render)
+app.use(render)
 
 server.listen(5002);
 
