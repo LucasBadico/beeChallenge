@@ -2,6 +2,7 @@ import db from '$/'
 
 const r = db()
 const TABLE = 'dummie'
+
 const DATA = [
     { name: "William Adama", tv_show: "Battlestar Galactica",
       posts: [
