@@ -10,8 +10,7 @@ import { createMemoryHistory, match, RouterContext } from 'react-router'
 
 import routes from './src/routes'
 import renderIndex from './render-index'
-import Store from './src/store'
-import wrap from './wrap'
+import createStore from './src/store'
 
 let assetMap = {
   'bundle.js': 'bundle.js'
@@ -23,32 +22,30 @@ if (process.env.NODE_ENV === 'production') {
     )
   )
 }
-export default wrap(async (ctx, next) => {
-  const req = ctx.request
-  const res = ctx.response
+export default (ctx, next) => {
+  const memoryHistory = createMemoryHistory(ctx.url)
+  const store = createStore(memoryHistory)
+  const history = syncHistoryWithStore(memoryHistory, store)
   
-  const memoryHistory = createMemoryHistory(req.url)
-  const store = new Store(memoryHistory)
-  const history = syncHistoryWithStore(memoryHistory, store.data)
-
   match({
     history,
     routes,
-    location: req.url
+    location: ctx.url
   }, (error, redirectLocation, renderProps) => {
     if (error) {
-      res.status(500).send(error.message)
+      ctx.throw(500, error.message)
     } else if (redirectLocation) {
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+      ctx.redirect(redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       const html = renderToString(
         //<ApolloProvider store={store.data} client={ApolloClientSingleton}>
           <RouterContext {...renderProps} />
         //</ApolloProvider>
         )
-      res.send(renderIndex(html, '', assetMap, store.data))
+      ctx.body = renderIndex(html, '', assetMap, store)
+      ctx.type = 'text/html; charset=utf-8'
     } else {
-      res.status(404).send('Not found')
+      ctx.throw(404, 'Not found')
     }
   })
-})
+}

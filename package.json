@@ -11,13 +11,11 @@
     "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
     "start": "node $OUTPUT_DIR/server/server",
     "predev-start": "npm run clean",
-    "dev-start": "nodemon -e js,jsx,md,mustache -w ./src --exec ./dev-tools/babel-run -- ./src/server",
+    "dev-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache -w ./src/ui --exec babel-node -- ./src/ui",
     "dev": "nf start -w --procfile ./dev-tools/Procfile.dev",
     "test": "jest --colors -b --verbose  --forceExit",
     "hot-dev-server": "webpack-dev-server --content-base public -ds --config webpack.config.js --hot --progress --colors --inline",
-    "ui": "npm run hot-dev-server",
-    "dev1": "./node_modules/.bin/nodemon src/server/app.js",
-    "prd1": "pm2 start src/server/app.js"
+    "ui": "npm run hot-dev-server"
   },
   "repository": {
     "type": "git",
@@ -90,7 +88,7 @@
     "react-dom": "^16.0.0",
     "react-proxy-loader": "^0.3.5",
     "react-redux": "^5.0.4",
-    "react-router": "^4.2.0",
+    "react-router": "^3.2.1",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
