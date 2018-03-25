@@ -1,11 +1,9 @@
 import React from 'react'
-import { Route, IndexRedirect } from 'react-router'
-import App from './components/App'
+import { Route, Switch } from 'react-router-dom'
 import LocalCounter from './containers/LocalCounter'
 
 export default (
-  <Route path='/' component={App}>
-    <IndexRedirect to='/remote-counter' />
-    <Route path='local-counter' component={LocalCounter} />
-  </Route>
+  <Switch>
+    <Route path='/' component={() => <p>HELLO FROM REACT!</p>} />
+  </Switch>
 )
