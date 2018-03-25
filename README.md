@@ -43,13 +43,15 @@ Separei o projeto em 5 fases:
 
 ## Entregas
 - 1 - Basica, Scopo original, com o minimo de funcionamento necessário.
-  prazo: sexta a noite.
+  previsão 1: sexta a noite.
+  previsão 2: domingo pela manhã?
 - 2 - Iteração Web, Adição de features na versão web.
-  prazo: sábado a noite.
+  previsão 1: sabado a noite.
+  previsão 2: domingo a noite.
 - 3 - Mobile, Versão mobile, com as mesmas funcionalidades do web.
-  prazo: segunda pela manhã.
+  previsão: segunda pela manhã.
 - 4 - Iteração Mobile, Adição de features especificas da versão mobile.
-  prazo: segunda a noite.
+  previsão: segunda a noite.
 - 5 - Iteração Zoom, add integração do zoom ao projeto.
 
 ## Changelog
