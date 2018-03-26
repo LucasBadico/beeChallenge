@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/services/price/model
+  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/services/price/Price
 
 PATH: 
   /Users/badicomac/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -8872,7 +8872,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest --colors -b --verbose  --forceExit __tests__/services/price/model
+  Arguments: -c jest --colors -b --verbose  --forceExit __tests__/services/price/Price
   Directory: /Users/badicomac/Repositorios/beeChallenge
   Output:
   
