@@ -1,8 +1,5 @@
 import Price from '$/Price'
 
-    // Price.findByOrigin()
-    // Price.findByDestination()
-    // price.save()
 /*
 * @todo add price.save test
 */
