@@ -10,8 +10,6 @@
     "start": "node $OUTPUT_DIR/server/server",
     "test": "jest --colors -b --verbose  --forceExit",
     "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
-    
-
     "prod-build-client": "webpack --config ./webpack/config.js",
     "prod-build-server": "babel ./src -d $OUTPUT_DIR/server --source-maps",
     "prod-build": "npm run clean && npm run prod-build-client && npm run prod-build-server",
@@ -80,6 +78,7 @@
     "jest": "^22.4.3",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
     "koa-proxy": "^0.9.0",
     "koa-router": "^7.4.0",

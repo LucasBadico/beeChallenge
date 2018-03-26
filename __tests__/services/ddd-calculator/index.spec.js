@@ -1,13 +1,17 @@
-import { Requester } from 'cote'
-import service from '$/'
+import {
+    server,
+    app,
+} from '$/'
 
-const requester = new Requester({ name: 'test requester' })
+import httpRequester from 'supertest'
 
-describe('Calculator service', () => {
-    it('should have a default \'say-hi\'', async done => {
+const request = httpRequester.agent(server)
+
+describe('Calculator app', () => {
+    it('should have a default \'Hello World! from koa\'', async done => {
         expect.assertions(1)
-        const hiFromService = await requester.send({ type: 'say-hi' })        
-        expect(hiFromService).toEqual('hi, from the ddd-calculator')
+        const helloFromRouter = await request.get('/hello')     
+        expect(helloFromRouter.text).toEqual('Hello World! from koa')
         done()
     })
-  })
+})

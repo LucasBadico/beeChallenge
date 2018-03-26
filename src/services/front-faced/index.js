@@ -1,32 +1,25 @@
 
 import Koa from 'koa'
-import Router from 'koa-router'
+import bodyParser from 'koa-bodyparser'
 import { Sockend } from 'cote'
 import { createServer } from 'http'
 import socket from 'socket.io'
+import router from './routes'
 
 const app = new Koa()
-const router = new Router()
 const server = createServer(app.callback())
 const io = socket(server)
 
-router.get('/hello', (ctx, next) => {
-    ctx.body = 'Hello World! from koa';
-})
-
-
 app.keys = ['im a newer secret', 'i like turtle'];
 
+app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-
-
-server.listen(5003);
-
+server.listen(5001);
 
 new Sockend(io, {
-    name: 'calculator sockend server'
+    name: 'front-faced sockend server'
 });
 
 export {
