@@ -1,4 +1,4 @@
-import { Requester } from 'cote'
+import { Requester } from '@LucasBadico/cote'
 import service from '$/responder'
 
 const requester = new Requester({ name: 'test requester' })
