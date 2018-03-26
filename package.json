@@ -70,7 +70,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "cote": "^0.16.2",
+    "@LucasBadico/cote": "https://github.com/LucasBadico/cote.git#86d0f2d6c6f4271363c933fe0bff2aed54bedddd",
     "elemental": "^0.6.1",
     "global": "^4.3.2",
     "html-loader": "^0.5.5",
