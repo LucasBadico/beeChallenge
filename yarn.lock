@@ -2,6 +2,20 @@
 # yarn lockfile v1
 
 
+"@LucasBadico/cote@https://github.com/LucasBadico/cote.git#86d0f2d6c6f4271363c933fe0bff2aed54bedddd":
+  version "0.16.2"
+  resolved "https://github.com/LucasBadico/cote.git#86d0f2d6c6f4271363c933fe0bff2aed54bedddd"
+  dependencies:
+    "@dashersw/axon" "2.0.5"
+    "@dashersw/node-discover" "^0.8.2"
+    charm "1.0.2"
+    colors "1.1.2"
+    eventemitter2 "4.1.2"
+    lodash "4.17.5"
+    portfinder "1.0.13"
+    socket.io "2.0.4"
+    uuid "^3.1.0"
+
 "@babel/code-frame@7.0.0-beta.42", "@babel/code-frame@^7.0.0-beta.35", "@babel/code-frame@^7.0.0-beta.40":
   version "7.0.0-beta.42"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-beta.42.tgz#a9c83233fa7cd06b39dc77adbb908616ff4f1962"
@@ -2089,20 +2103,6 @@ cosmiconfig@^4.0.0:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
-
-cote@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/cote/-/cote-0.16.2.tgz#9b46ab6adae90650f88ffd2b4f156fb685cd69b9"
-  dependencies:
-    "@dashersw/axon" "2.0.5"
-    "@dashersw/node-discover" "^0.8.2"
-    charm "1.0.2"
-    colors "1.1.2"
-    eventemitter2 "4.1.2"
-    lodash "4.17.5"
-    portfinder "1.0.13"
-    socket.io "2.0.4"
-    uuid "^3.1.0"
 
 create-ecdh@^4.0.0:
   version "4.0.0"
