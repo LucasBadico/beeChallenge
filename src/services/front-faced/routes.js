@@ -1,10 +1,10 @@
 import Router from 'koa-router'
-import { Requester } from 'cote'
+import { Requester } from '@LucasBadico/cote'
 
 const requester = new Requester({ name: 'front-faced requester' })
 const router = new Router()
 
-const getCtx = (ctx) => () => ctx
+const sendCtx = (ctx) => () => ctx
 
 
 router.get('/hello', (ctx, next) => {
@@ -13,18 +13,21 @@ router.get('/hello', (ctx, next) => {
 
 // prices
 router.get('/prices/all', async (ctx, next) => {
-    const allPrices = await requester.send({ type: 'all-prices'}) 
-    console.log('allPrices route', allPrices)
+    const allPrices = await requester.send({ type: 'all-prices' }) 
     ctx.body = allPrices
 })
 
 router.post('/prices/by-origin', async (ctx, next) => {
-    const prices = await requester.send({ type: 'by-origin' }, getCtx(ctx))
+    console.log('ctx || ', { ctx }, sendCtx(ctx))
+    const prices = await requester.send({ type: 'by-origin' }, sendCtx(ctx))
     ctx.body = prices
 })
 
 router.post('/prices/by-destination', async (ctx, next) => {
-    const prices = await requester.send({ type: 'by-destination' }, ctx)
+    const prices = await requester.send({
+        type: 'by-destination',
+        ...sendCtx(ctx),
+    })
     ctx.body = prices
 })
 

@@ -1,7 +1,7 @@
 
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
-import { Sockend } from 'cote'
+import { Sockend } from '@LucasBadico/cote'
 import { createServer } from 'http'
 import socket from 'socket.io'
 import router from './routes'

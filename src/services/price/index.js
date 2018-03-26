@@ -1,6 +1,6 @@
 import Koa from 'koa'
 import Router from 'koa-router'
-import { Sockend } from 'cote'
+import { Sockend } from '@LucasBadico/cote'
 import { createServer } from 'http'
 import socket from 'socket.io'
 

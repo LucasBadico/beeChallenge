@@ -18,14 +18,28 @@ describe('Front-faced app', () => {
     })
 
 
-    it.only('should have a default \'/prices/all\' end point', async done => {
-        expect.assertions(1)
-        const pricesFromRouter = await request.get('/prices/all')
-        console.log('allPrices test', pricesFromRouter)
-        expect(true).toEqual(true)
+    it('should have a default \'/prices/all\' end point', async done => {
+        expect.assertions(2)
+        const { text } = await request.get('/prices/all')
+        const pricesFromRouter = JSON.parse(text)
+        expect(pricesFromRouter).toHaveLength(6)
+        expect(pricesFromRouter).toBeInstanceOf(Array)
         done()
     })
-    // /prices/all
+
+    it.only('should have a default \'/prices/by-origin\' end point', async done => {
+        expect.assertions(2)
+        // const { text }  = await request.post('/prices/by-origin').type('json').send({
+        const result  = await request.post('/prices/by-origin').type('json').send({
+            origin: '011'
+        })
+        expect(result).toBe('aad')
+
+        // const pricesFromRouter = JSON.parse(text)
+        // expect(pricesFromRouter).toHaveLength(3)
+        // expect(pricesFromRouter).toBeInstanceOf(Array)
+        done()
+    })
     // /prices/by-origin
     // /prices/by-destination
 })
