@@ -5,15 +5,21 @@ class PriceModel extends RethinkdbModel {
     constructor(opts){
         super(opts)
     }
-   async getByOrigin(origin) { // for futurre references
+   async getByOrigin(origin) {
         return await this.dbtable()
         .filter({origin})
         .run();
     }
 
-    async getByDestination(destination) { // for futurre references
+    async getByDestination(destination) {
         return await this.dbtable()
         .filter({ destination })
+        .run();
+    }
+
+    async getByOriginAndDestination({ origin, destination }) {
+        return await this.dbtable()
+        .filter({ destination, origin })
         .run();
     }
 }

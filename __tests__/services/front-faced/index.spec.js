@@ -27,19 +27,24 @@ describe('Front-faced app', () => {
         done()
     })
 
-    it.only('should have a default \'/prices/by-origin\' end point', async done => {
+    it('should have a default \'/prices/by-origin\' end point', async done => {
         expect.assertions(2)
-        // const { text }  = await request.post('/prices/by-origin').type('json').send({
-        const result  = await request.post('/prices/by-origin').type('json').send({
-            origin: '011'
-        })
-        expect(result).toBe('aad')
+        const { text }  = await request.post('/prices/by-origin').type('json').send({ origin: '011' })
 
-        // const pricesFromRouter = JSON.parse(text)
-        // expect(pricesFromRouter).toHaveLength(3)
-        // expect(pricesFromRouter).toBeInstanceOf(Array)
+        const pricesFromRouter = JSON.parse(text)
+        expect(pricesFromRouter).toHaveLength(3)
+        expect(pricesFromRouter).toBeInstanceOf(Array)
         done()
     })
-    // /prices/by-origin
+
+    it('should have a default \'/prices/by-destination\' end point', async done => {
+        expect.assertions(2)
+        const { text }  = await request.post('/prices/by-destination').type('json').send({ destination: '011' })
+
+        const pricesFromRouter = JSON.parse(text)
+        expect(pricesFromRouter).toHaveLength(3)
+        expect(pricesFromRouter).toBeInstanceOf(Array)
+        done()
+    })
     // /prices/by-destination
 })

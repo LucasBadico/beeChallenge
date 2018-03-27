@@ -13,20 +13,29 @@ router.get('/hello', (ctx, next) => {
 
 // prices
 router.get('/prices/all', async (ctx, next) => {
-    const allPrices = await requester.send({ type: 'all-prices' }) 
+    const allPrices = await requester.send({ type: 'price-all' }) 
     ctx.body = allPrices
 })
 
 router.post('/prices/by-origin', async (ctx, next) => {
-    console.log('ctx || ', { ctx }, sendCtx(ctx))
-    const prices = await requester.send({ type: 'by-origin' }, sendCtx(ctx))
+    const prices = await requester.send({ type: 'price-by-origin', origin: ctx.request.body.origin })
     ctx.body = prices
 })
 
 router.post('/prices/by-destination', async (ctx, next) => {
     const prices = await requester.send({
-        type: 'by-destination',
-        ...sendCtx(ctx),
+        type: 'price-by-destination',
+        destination: ctx.request.body.destination,
+    })
+    ctx.body = prices
+})
+
+
+router.post('/prices/by-minute', async (ctx, next) => {
+    const prices = await requester.send({
+        type: 'price-by-minute',
+        origin: ctx.request.body.origin,
+        destination: ctx.request.body.destination,
     })
     ctx.body = prices
 })
