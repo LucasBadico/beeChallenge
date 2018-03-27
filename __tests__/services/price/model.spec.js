@@ -89,4 +89,15 @@ describe('Price model - as model', () => {
         expect(result).toBeInstanceOf(Array)
         done()
     })
+
+    it('should \'model.getByOriginAndDestination()\' retrieve data on database, whithout error', async done => {
+        expect.assertions(2)
+        const result = await model.getByOriginAndDestination({
+            origin: '011',
+            destination: '016',
+        })
+        expect(result).toHaveLength(1)
+        expect(result).toBeInstanceOf(Array)
+        done()
+    })
   })
