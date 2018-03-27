@@ -1,7 +1,8 @@
-const getAvailablePort = startingAt => {
+import { createServer } from 'http'
 
+export const getAvailablePort = async startingAt => {
     const getNextAvailablePort = (currentPort, fn) => {
-        const server = net.createServer()
+        const server = createServer()
         server.listen(currentPort, _ => {
             server.once('close', _ => {
                 fn(currentPort)
