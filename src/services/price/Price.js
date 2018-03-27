@@ -59,6 +59,20 @@ class Price {
         }
     }
 
+    static async byOriginAndDestination({ destination, origin }, asRaw) {
+        try {
+            const result = await model.getByOriginAndDestination({ destination, origin })
+            if (R.isEmpty(result) || R.isNil(result)) throw new Error('Price not found', { destination, origin })
+            if (asRaw) return result
+            return result.reduce(
+                (acc, item) => [...acc, new Price(item, true)],
+                [],
+            )
+        } catch (err){
+            throw new Error(err)
+        }
+    }
+
     async save() {
         let result
         const data = R.pick(this, model.getSchema())
