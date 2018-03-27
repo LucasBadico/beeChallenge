@@ -1,7 +1,7 @@
-import { Responder } from '@LucasBadico/cote'
+import { Responder } from 'cote'
 import Price from './Price'
 
-const responder = new Responder({ name: 'price-service' })
+const responder = new Responder({ name: 'price-service responder' })
 responder.on('say-hi-price', _ => Promise.resolve('hi, from the price-service'))
 
 responder.on('prices-all', async (...args) => {
@@ -17,8 +17,12 @@ responder.on('prices-by-destination', async ({ destination }) => {
 })
 
 responder.on('price-minute', async ({ destination, origin }) => {
-    const result = await Price.byOriginAndDestination({ destination, origin }, true)
-    return result[0]
+    try {
+        const result = await Price.byOriginAndDestination({ destination, origin }, true)
+        return result[0]
+    } catch (err){
+        throw err
+    }
 })
 
 export {

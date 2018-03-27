@@ -1,8 +1,9 @@
 import Koa from 'koa'
 import Router from 'koa-router'
-import { Sockend } from '@LucasBadico/cote'
+import { Sockend } from 'cote'
 import { createServer } from 'http'
 import socket from 'socket.io'
+import * as initResponder from './responder'
 
 const app = new Koa()
 const router = new Router()
@@ -20,12 +21,13 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 
 // I think that I could even not put the server up,
-// because the handler of comunication will be on the cote
+// because the handler of comunication will be on the 'cote'
 server.listen(5003);
 
 
 new Sockend(io, {
-    name: 'calculator sockend server'
+    name: 'price sockend server',
+    namespace: 'price'
 });
 
 

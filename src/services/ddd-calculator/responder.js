@@ -1,5 +1,5 @@
-import { Responder, Requester } from '@LucasBadico/cote'
-const responder = new Responder({ name: 'ddd-calculator' })
+import { Responder, Requester } from 'cote'
+const responder = new Responder({ name: 'ddd-calculator responder' })
 
 const parsePlan = (plan) => (str) => {
     if (!str.match(/(\w+).(\d+)/) || !str.match(plan)) throw new Error('Plano Inválido')
@@ -7,12 +7,16 @@ const parsePlan = (plan) => (str) => {
 }
 
 responder.on('say-hi-ddd-calculator', _ => Promise.resolve('hi, from the ddd-calculator'))
-
-responder.on('calculator-fale-mais', async ({
+responder.on('calculator-fale-mais', ({
     costByMinute,
     totalTime,
     plan,
-}) => {    
+}) => {
+    console.log('CALC!!',
+        costByMinute,
+        totalTime,
+        plan,
+    )
     const freeTime = parsePlan('FaleMais')(plan)
     const notFreeTime = totalTime - freeTime
     return Promise.resolve(notFreeTime <= 0 ? 0 : notFreeTime * costByMinute * 1.1)
