@@ -1,19 +1,23 @@
 import { Responder, Requester } from '@LucasBadico/cote'
 const responder = new Responder({ name: 'ddd-calculator' })
-const requester = new Requester({ name: 'ddd-calculator' })
 
-const parsePlan = str => parseInt(srt.slice(str.length - 2), 10)
+const parsePlan = (plan) => (str) => {
+    if (!str.match(/(\w+).(\d+)/) || !str.match(plan)) throw new Error('Plano Inválido')
+    return parseInt(str.match(/(\d+)/)[0], 10)
+}
 
-responder.on('say-hi', _ => Promise.resolve('hi, from the ddd-calculator'))
+responder.on('say-hi-ddd-calculator', _ => Promise.resolve('hi, from the ddd-calculator'))
 
-responder.on('calc-full', async ({
-    origin,
-    destination,
+responder.on('calculator-fale-mais', async ({
+    costByMinute,
     totalTime,
     plan,
-}) => {
-    const { costByMinute } = await requester.send({ type: 'price-minute', origin, destination })
-    const freeTime = parsePlan(plan)
+}) => {    
+    const freeTime = parsePlan('FaleMais')(plan)
     const notFreeTime = totalTime - freeTime
-    return notFreeTime <= 0 ? 0 : notFreeTime * costByMinute * 1.1
+    return Promise.resolve(notFreeTime <= 0 ? 0 : notFreeTime * costByMinute * 1.1)
 })
+
+export {
+    responder
+}
