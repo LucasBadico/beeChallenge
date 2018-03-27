@@ -13,18 +13,18 @@ router.get('/hello', (ctx, next) => {
 
 // prices
 router.get('/prices/all', async (ctx, next) => {
-    const allPrices = await requester.send({ type: 'price-all' }) 
+    const allPrices = await requester.send({ type: 'prices-all' }) 
     ctx.body = allPrices
 })
 
 router.post('/prices/by-origin', async (ctx, next) => {
-    const prices = await requester.send({ type: 'price-by-origin', origin: ctx.request.body.origin })
+    const prices = await requester.send({ type: 'prices-by-origin', origin: ctx.request.body.origin })
     ctx.body = prices
 })
 
 router.post('/prices/by-destination', async (ctx, next) => {
     const prices = await requester.send({
-        type: 'price-by-destination',
+        type: 'prices-by-destination',
         destination: ctx.request.body.destination,
     })
     ctx.body = prices
@@ -38,6 +38,15 @@ router.post('/prices/by-minute', async (ctx, next) => {
         destination: ctx.request.body.destination,
     })
     ctx.body = prices
+})
+
+router.post('/calculator/fale-mais', async (ctx, next) => {
+    const price = await requester.send({
+        type: 'calculator-fale-mais',
+        origin: ctx.request.body.origin,
+        destination: ctx.request.body.destination,
+    })
+    ctx.body = price
 })
 
 export default router

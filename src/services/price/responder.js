@@ -2,9 +2,9 @@ import { Responder } from '@LucasBadico/cote'
 import Price from './Price'
 
 const responder = new Responder({ name: 'price-service' })
-responder.on('say-hi', _ => Promise.resolve('hi, from the price-service'))
+responder.on('say-hi-price', _ => Promise.resolve('hi, from the price-service'))
 
-responder.on('price-all', async (...args) => {
+responder.on('prices-all', async (...args) => {
     return Price.all(true)
 })
 

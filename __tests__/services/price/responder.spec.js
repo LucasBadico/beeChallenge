@@ -6,12 +6,12 @@ const requester = new Requester({ name: 'test requester' })
 describe('Prices service', () => {
     it('should have a default \'say-hi\'', async done => {
         expect.assertions(1)
-        const hiFromService = await requester.send({ type: 'say-hi' })        
+        const hiFromService = await requester.send({ type: 'say-hi-price' })        
         expect(hiFromService).toEqual('hi, from the price-service')
         done()
     })
 
-    it.only('should have a \'prices-all\' responder', async done => {
+    it('should have a \'prices-all\' responder', async done => {
         expect.assertions(2)
         const result = await requester.send({ type: 'prices-all' })      
         expect(result).toHaveLength(6)

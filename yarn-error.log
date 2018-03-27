@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/services/front-faced/index
+  /Users/badicomac/.nvm/versions/node/v8.10.0/bin/node /usr/local/bin/yarn test __tests__/services/ddd-calculator/responder
 
 PATH: 
   /Users/badicomac/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -23,8 +23,8 @@ npm manifest:
       "clean": "rm -rf $OUTPUT_DIR",
       "dev-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache -w ./src/ui --exec babel-node -- ./src/ui ",
       "migrate": "rethinkdb-migrate",
-      "start": "node $OUTPUT_DIR/server/server --forceExit",
-      "test": "jest --colors -b --verbose",
+      "start": "node $OUTPUT_DIR/server/server",
+      "test": "jest --colors -b --verbose ",
       "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
       "prod-build-client": "webpack --config ./webpack/config.js",
       "prod-build-server": "babel ./src -d $OUTPUT_DIR/server --source-maps",
@@ -8866,7 +8866,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest --colors -b --verbose __tests__/services/front-faced/index
+  Arguments: -c jest --colors -b --verbose  __tests__/services/ddd-calculator/responder
   Directory: /Users/badicomac/Repositorios/beeChallenge
   Output:
   
