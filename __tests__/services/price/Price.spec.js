@@ -116,4 +116,36 @@ describe('Price class', () => {
         expect(result[0]).toHaveProperty('origin')
         done()
     })
+
+    it('\'Price.getByOriginAndDestination()\' return a item of Price Object', async done => {
+        expect.assertions(7)
+        const result = await Price.byOriginAndDestination({
+            origin: '011',
+            destination: '016',
+        })
+        expect(result).toHaveLength(1)
+        expect(result[0]).toBeInstanceOf(Price)
+        expect(result[0]).toBeInstanceOf(Object)
+        expect(result[0]).toHaveProperty('id')
+        expect(result[0]).toHaveProperty('destination')
+        expect(result[0]).toHaveProperty('costByMinute')
+        expect(result[0]).toHaveProperty('origin')
+        done()
+    })
+
+    it('\'Price.getByOriginAndDestination()\' return a item of raw Object', async done => {
+        expect.assertions(7)
+        const result = await Price.byOriginAndDestination({
+            origin: '011',
+            destination: '016',
+        }, true)
+        expect(result).toHaveLength(1)
+        expect(result[0]).not.toBeInstanceOf(Price)
+        expect(result[0]).toBeInstanceOf(Object)
+        expect(result[0]).toHaveProperty('id')
+        expect(result[0]).toHaveProperty('destination')
+        expect(result[0]).toHaveProperty('costByMinute')
+        expect(result[0]).toHaveProperty('origin')
+        done()
+    })
   })
