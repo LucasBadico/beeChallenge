@@ -3,6 +3,7 @@ import Koa from 'koa'
 import Router from 'koa-router'
 import { Sockend } from 'cote'
 import { createServer } from 'http'
+import { getAvailablePort } from 'utils'
 import socket from 'socket.io'
 import render from './renderer'
 import 'ignore-styles'
@@ -15,7 +16,7 @@ app.keys = ['im a newer secret', 'i like turtle'];
 
 app.use(render)
 
-server.listen(5002);
+getAvailablePort(5001).then(port => server.listen(port))
 
 new Sockend(io, {
     name: 'ui sockend server'

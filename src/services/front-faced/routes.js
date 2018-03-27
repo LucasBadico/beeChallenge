@@ -5,7 +5,7 @@ const requester = new Requester({ name: 'front-faced requester' })
 const router = new Router()
 
 router.get('/hello', (ctx, next) => {
-    ctx.body = 'Hello World! from koa front';
+    ctx.body = 'Hello World! from koa';
 })
 
 // prices
