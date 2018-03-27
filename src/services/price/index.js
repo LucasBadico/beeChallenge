@@ -1,40 +1,30 @@
-import Koa from 'koa'
-import Router from 'koa-router'
-import { Sockend } from 'cote'
-import { createServer } from 'http'
-import socket from 'socket.io'
-import * as initResponder from './responder'
+import { Responder } from 'cote'
+import Price from './Price'
 
-const app = new Koa()
-const router = new Router()
-const server = createServer(app.callback())
-const io = socket(server)
+const responder = new Responder({ name: 'price-service responder' })
+responder.on('say-hi-price', _ => Promise.resolve('hi, from the price-service'))
 
-router.get('/hello', (ctx, next) => {
-    ctx.body = 'Hello World! from koa';
+responder.on('prices-all', async (...args) => {
+    return Price.all(true)
 })
 
+responder.on('prices-by-origin', async ({ origin }) => { 
+    return Price.findByOrigin(origin, true)
+})
 
-app.keys = ['im a newer secret', 'i like turtle'];
+responder.on('prices-by-destination', async ({ destination }) => {
+    return Price.findByDestination(destination, true)
+})
 
-app.use(router.routes())
-app.use(router.allowedMethods())
-
-// I think that I could even not put the server up,
-// because the handler of comunication will be on the 'cote'
-server.listen(5003);
-
-
-new Sockend(io, {
-    name: 'price sockend server',
-    namespace: 'price'
-});
-
+responder.on('price-minute', async ({ destination, origin }) => {
+    try {
+        const result = await Price.byOriginAndDestination({ destination, origin }, true)
+        return result[0]
+    } catch (err){
+        throw err
+    }
+})
 
 export {
-    server,
-    app,
-    router,
-    io,
+    responder
 }
-export default app
