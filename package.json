@@ -6,9 +6,10 @@
   "scripts": {
     "clean": "rm -rf $OUTPUT_DIR",
     "dev-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache -w ./src/ui --exec babel-node -- ./src/ui ",
+    "service-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache --exec babel-node -- ",
     "migrate": "rethinkdb-migrate",
     "start": "node $OUTPUT_DIR/server/server",
-    "test": "jest --colors -b --verbose --forceExit",
+    "test": "jest --colors -b --verbose",
     "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
     "prod-build-client": "webpack --config ./webpack/config.js",
     "prod-build-server": "babel ./src -d $OUTPUT_DIR/server --source-maps",
@@ -70,7 +71,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "@LucasBadico/cote": "https://github.com/LucasBadico/cote.git",
+    "cote": "^0.16.2",
     "global": "^4.3.2",
     "html-loader": "^0.5.5",
     "ignore-styles": "^5.0.1",
