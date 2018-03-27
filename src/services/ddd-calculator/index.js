@@ -1,39 +1,27 @@
+import { Responder, Requester } from 'cote'
+const responder = new Responder({ name: 'ddd-calculator responder' })
 
-import Koa from 'koa'
-import Router from 'koa-router'
-import { Sockend } from 'cote'
-import { createServer } from 'http'
-import socket from 'socket.io'
-import * as initResponder from './responder'
+const parsePlan = (plan) => (str) => {
+    if (!str.match(/(\w+).(\d+)/) || !str.match(plan)) throw new Error('Plano Inválido')
+    return parseInt(str.match(/(\d+)/)[0], 10)
+}
 
-const app = new Koa()
-const router = new Router()
-const server = createServer(app.callback())
-// const io = socket(server)
-
-router.get('/hello', (ctx, next) => {
-    ctx.body = 'Hello World! from koa';
+responder.on('say-hi-ddd-calculator', _ => Promise.resolve('hi, from the ddd-calculator'))
+responder.on('calculator-fale-mais', ({
+    costByMinute,
+    totalTime,
+    plan,
+}) => {
+    console.log('CALC!!',
+        costByMinute,
+        totalTime,
+        plan,
+    )
+    const freeTime = parsePlan('FaleMais')(plan)
+    const notFreeTime = totalTime - freeTime
+    return Promise.resolve(notFreeTime <= 0 ? 0 : notFreeTime * costByMinute * 1.1)
 })
 
-app.keys = ['im a newer secret', 'i like turtle'];
-
-app.use(router.routes())
-app.use(router.allowedMethods())
-
-
-
-server.listen(5004);
-
-
-new Sockend(io, {
-    name: 'calculator sockend server',
-    namespace: 'calculator'
-});
-
 export {
-    server,
-    app,
-    router,
-    // io,
+    responder
 }
-export default app

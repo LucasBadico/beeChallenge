@@ -4,6 +4,7 @@ import {
 } from '$/'
 
 import httpRequester from 'supertest'
+import * as initResponderPrice from '~/services/price'
 
 const request = httpRequester.agent(server)
 
@@ -54,7 +55,7 @@ describe('Front-faced app', () => {
         done()
     })
 
-    it('should \'/calculator/fale-mais\' throw error if no costByMinute or origin and destination is sended', async done => {
+    it.skip('should \'/calculator/fale-mais\' throw error if no costByMinute or origin and destination is sended', async done => {
         expect.assertions(3)
         const { text, error, statusCode } = await request
             .post('/calculator/fale-mais')
@@ -67,7 +68,7 @@ describe('Front-faced app', () => {
         done()
     })
 
-    it.only('should \'/calculator/fale-mais\' return price if costByMinute is sended, with plan and time', async done => {
+    it.skip('should \'/calculator/fale-mais\' return price if costByMinute is sended, with plan and time', async done => {
         expect.assertions(4)
         const { body, error, statusCode, ok } = await request
             .post('/calculator/fale-mais')
@@ -81,7 +82,7 @@ describe('Front-faced app', () => {
     })
 
     // this scenario is not working, something wrong with requester
-    it.skip.only('should \'/calculator/fale-mais\' return price if origin and destination is sended, with plan and time', async done => {
+    it.skip('should \'/calculator/fale-mais\' return price if origin and destination is sended, with plan and time', async done => {
         expect.assertions(4)
         console.log('TESTE')
         const { body, error, statusCode, ok } = await request

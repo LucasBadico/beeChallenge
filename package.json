@@ -9,7 +9,8 @@
     "service-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache --exec babel-node -- ",
     "migrate": "rethinkdb-migrate",
     "start": "node $OUTPUT_DIR/server/server",
-    "test": "jest --colors -b --verbose",
+    "test": "jest --colors -b --verbose --forceExit",
+    "aproval-test": "jest --colors -b --forceExit",
     "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
     "prod-build-client": "webpack --config ./webpack/config.js",
     "prod-build-server": "babel ./src -d $OUTPUT_DIR/server --source-maps",
@@ -128,7 +129,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test"
+      "pre-push": "npm run aproval-test"
     }
   }
 }
