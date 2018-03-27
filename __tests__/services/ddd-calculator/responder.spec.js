@@ -1,4 +1,4 @@
-import { Requester } from '@LucasBadico/cote'
+import { Requester } from 'cote'
 import * as initResponderCalculator from '$/responder'
 
 const requester = new Requester({ name: 'test requester' })
