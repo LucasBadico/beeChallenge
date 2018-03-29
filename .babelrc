@@ -14,7 +14,9 @@
           "module-resolver", {
             "root": ["./src"],
             "alias": {
-              "services": "./src/microservices"
+              "services": "./src/services",
+              "log": "./src/log",
+              "utils": "./src/utils"
             },
             "extensions": [".js", ".jsx"]
           }
@@ -29,14 +31,13 @@
     },
     "dev": {
       "plugins": [
-        "react-hot-loader/babel",
         "transform-es2015-modules-commonjs",
-        ["react-element-info", {"prefix": "e2e"}],
         [
           "module-resolver", {
             "root": ["./src"],
             "alias": {
-              "services": "./src/microservices",
+              "services": "./src/services",
+              "log": "./src/log",
               "utils": "./src/utils"
             },
             "extensions": [".js", ".jsx"]
@@ -54,13 +55,13 @@
     "production":{
       "plugins": [
         "babel-plugin-transform-inline-environment-variables",
-        "transform-react-jsx",
-        ["react-element-info", {"prefix": "e2e"}],
         [
           "module-resolver", {
             "root": ["./src"],
             "alias": {
-              "services": "./src/microservices"
+              "services": "./src/services",
+              "log": "./src/log",
+              "utils": "./src/utils"
             },
             "extensions": [".js", ".jsx"]
           }
@@ -68,8 +69,7 @@
       ],
       "presets": [
         ["es2015", {"modules": false}],
-        "stage-2",
-        "react"
+        "stage-2"
       ]
     }
 }
