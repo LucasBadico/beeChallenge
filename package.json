@@ -7,12 +7,12 @@
     "service-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache --exec babel-node -- ",
     "migrate": "rethinkdb-migrate",
     "test": "jest --colors -b --verbose",
-    "aproval-test": "jest --colors -b --forceExit",
+    "aceptance-test": "jest --colors -b --forceExit",
     "postinstall": "if [ \"MUDAR PARA\" = production ] ; then npm run prod-build ; fi"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LucasBadico/beeChallenge.git"
+    "url": "git+https://github.com/LucasBadico/beeChallenge-services.git"
   },
   "keywords": [
     "microservices",
@@ -21,9 +21,9 @@
   "author": "LucasBadico",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LucasBadico/beeChallenge/issues"
+    "url": "https://github.com/LucasBadico/beeChallenge-services/issues"
   },
-  "homepage": "https://github.com/LucasBadico/beeChallenge#readme",
+  "homepage": "https://github.com/LucasBadico/beeChallenge-services#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -64,10 +64,12 @@
     "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
+    "koa-cors": "^0.0.16",
     "koa-proxy": "^0.9.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
+    "koa2-cors": "^2.0.5",
     "minilog": "^3.1.0",
     "ramda": "^0.25.0",
     "rethinkdb": "^2.3.3",
@@ -84,9 +86,6 @@
     "moduleNameMapper": {
       "\\.(css|jpg|png|scss)$": "<rootDir>/empty-module.js"
     },
-    "setupFiles": [
-      "./jest-setup.js"
-    ],
     "modulePaths": [
       "<rootDir>/node_modules",
       "<rootDir>/__tests__"
@@ -98,7 +97,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run aproval-test"
+      "pre-push": "npm run aceptance-test"
     }
   }
 }

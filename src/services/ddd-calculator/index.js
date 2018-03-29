@@ -12,11 +12,6 @@ responder.on('calculator-fale-mais', ({
     totalTime,
     plan,
 }) => {
-    console.log('CALC!!',
-        costByMinute,
-        totalTime,
-        plan,
-    )
     const freeTime = parsePlan('FaleMais')(plan)
     const notFreeTime = totalTime - freeTime
     return Promise.resolve(notFreeTime <= 0 ? 0 : notFreeTime * costByMinute * 1.1)

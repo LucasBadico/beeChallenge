@@ -1,6 +1,7 @@
 
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
+import cors from 'koa2-cors'
 import { Sockend } from 'cote'
 import { getAvailablePort } from 'utils'
 import { createServer } from 'http'
@@ -16,9 +17,8 @@ app.keys = ['im a newer secret', 'i like turtle'];
 app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
-
-getAvailablePort(5001).then(port => server.listen(port))
-
+// getAvailablePort(5001).then(port => server.listen(port))
+server.listen(3030)
 new Sockend(io, {
     name: 'front-faced sockend server'
 });
