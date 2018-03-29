@@ -10,6 +10,8 @@ router.get('/hello', (ctx, next) => {
 
 // prices
 router.get('/prices/all', async (ctx, next) => {
+    console.log('REQUEST INCOMING', ctx.request)    
+    console.log('REQUEST BODY', ctx.request.body)    
     const allPrices = await requester.send({ type: 'prices-all' }) 
     ctx.body = allPrices
 })
@@ -37,6 +39,7 @@ router.post('/prices/minute', async (ctx, next) => {
 })
 
 router.post('/calculator/fale-mais', async (ctx, next) => {
+    console.log('REQUEST INCOMING', ctx.request)
     const getCostByMinute = async (ctx) => {
         const {
             request: { 
