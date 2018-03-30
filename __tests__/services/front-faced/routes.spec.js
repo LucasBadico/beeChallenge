@@ -15,26 +15,26 @@ const PLANS = {
 }
 
 describe('Front-faced app', () => {
-    it('should have a default \'Hello World! from koa\'', async done => {
+    it('should have a default \'Hello World! from koa root/api/hello\'', async done => {
         expect.assertions(1)
-        const helloFromRouter = await request.get('/hello')     
-        expect(helloFromRouter.text).toEqual('Hello World! from koa')
+        const helloFromRouter = await request.get('/api/hello')     
+        expect(helloFromRouter.text).toEqual('Hello World! from koa root/api/hello')
         done()
     })
     
 
-    it('should end point \'/prices/all\' respond with a list of Prices', async done => {
+    it('should end point \'/api/prices/all\' respond with a list of Prices', async done => {
         expect.assertions(2)
-        const { body } = await request.get('/prices/all')
+        const { body } = await request.get('/api/prices/all')
         const pricesFromRouter = body
         expect(pricesFromRouter).toHaveLength(6)
         expect(pricesFromRouter).toBeInstanceOf(Array)
         done()
     })
 
-    it('should end point \'/prices/by-origin\' respond with a list of Prices', async done => {
+    it('should end point \'/api/prices/by-origin\' respond with a list of Prices', async done => {
         expect.assertions(2)
-        const { body }  = await request.post('/prices/by-origin').type('json').send({ origin: '011' })
+        const { body }  = await request.post('/api/prices/by-origin').type('json').send({ origin: '011' })
 
         const pricesFromRouter = body
         expect(pricesFromRouter).toHaveLength(3)
@@ -42,10 +42,10 @@ describe('Front-faced app', () => {
         done()
     })
 
-    it('should end point \'/prices/by-destination\' respond with a list of Prices', async done => {
+    it('should end point \'/api/prices/by-destination\' respond with a list of Prices', async done => {
         expect.assertions(2)
         const { body }  = await request
-            .post('/prices/by-destination')
+            .post('/api/prices/by-destination')
             .type('json')
             .send({ destination: '011' })
 
@@ -55,10 +55,10 @@ describe('Front-faced app', () => {
         done()
     })
 
-    it.skip('should \'/calculator/fale-mais\' throw error if no costByMinute or origin and destination is sended', async done => {
+    it.skip('should \'/api/calculator/fale-mais\' throw error if no costByMinute or origin and destination is sended', async done => {
         expect.assertions(3)
         const { text, error, statusCode } = await request
-            .post('/calculator/fale-mais')
+            .post('/api/calculator/fale-mais')
             .type('json')
             .send({ plan: PLANS.FALE30, totalTime: 10 })
 
@@ -68,10 +68,10 @@ describe('Front-faced app', () => {
         done()
     })
 
-    it.skip('should \'/calculator/fale-mais\' return price if costByMinute is sended, with plan and time', async done => {
+    it.skip('should \'/api/calculator/fale-mais\' return price if costByMinute is sended, with plan and time', async done => {
         expect.assertions(4)
         const { body, error, statusCode, ok } = await request
-            .post('/calculator/fale-mais')
+            .post('/api/calculator/fale-mais')
             .type('json')
             .send({ plan: PLANS.FALE30, totalTime: 10, costByMinute: 1.9 })
         expect(body).toBe(0)
@@ -82,11 +82,10 @@ describe('Front-faced app', () => {
     })
 
     // this scenario is not working, something wrong with requester
-    it.skip('should \'/calculator/fale-mais\' return price if origin and destination is sended, with plan and time', async done => {
+    it.skip('should \'/api/calculator/fale-mais\' return price if origin and destination is sended, with plan and time', async done => {
         expect.assertions(4)
-        console.log('TESTE')
         const { body, error, statusCode, ok } = await request
-            .post('/calculator/fale-mais')
+            .post('/api/calculator/fale-mais')
             .type('json')
             .send({ plan: PLANS.FALE30, totalTime: 10, origin: '011', destination: '016' })
         expect(body).toBe(0)
@@ -96,7 +95,7 @@ describe('Front-faced app', () => {
         done()
     })
 
-    // it('should \'/calculator/fale-mais\' return price if origin and destination is sended, with plan and time', async done => {
+    // it('should \'/api/calculator/fale-mais\' return price if origin and destination is sended, with plan and time', async done => {
 
     // })
 })
