@@ -6,6 +6,7 @@
   "scripts": {
     "service-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache --exec babel-node -- ",
     "migrate": "rethinkdb-migrate",
+    "build-services": "babel ./src -d build/services",
     "test": "jest --colors -b --verbose",
     "aceptance-test": "jest --colors -b --forceExit",
     "postinstall": "if [ \"MUDAR PARA\" = production ] ; then npm run prod-build ; fi"
@@ -71,6 +72,7 @@
     "koa-views": "^6.1.4",
     "koa2-cors": "^2.0.5",
     "minilog": "^3.1.0",
+    "pm2": "^2.10.2",
     "ramda": "^0.25.0",
     "rethinkdb": "^2.3.3",
     "rethinkdb-migrate": "^1.3.0",
