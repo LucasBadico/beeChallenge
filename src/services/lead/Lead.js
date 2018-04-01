@@ -125,6 +125,10 @@ class Lead {
         }
     }
 
+    raw() {
+        return R.pick(this, model.getSchema())
+    }
+
 }
 
 export default Lead
