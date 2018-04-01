@@ -2,7 +2,7 @@ const config = {
     rethink: {
 		host: 'localhost',
 		port: 28015,
-		db:'beeChallenge'
+		db:'bechallenge'
 	}
 }
 module.exports = config;
