@@ -14,7 +14,12 @@ const io = socket(server)
 
 app.keys = ['im a newer secret', 'i like turtle'];
 
-app.use(bodyParser())
+app.use(bodyParser({
+    extendTypes: {
+      json: ['text/plain'],
+    }
+  }))
+app.use(cors({ origin: '*' }))
 app.use(router.routes())
 app.use(router.allowedMethods())
 // getAvailablePort(5001).then(port => server.listen(port))
