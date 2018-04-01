@@ -34,10 +34,12 @@ export class RethinkdbModel {
     }
 
     async update(id, data) {
-        data.updated_at = r.now();
         const result = await this.dbtable()
                 .get(id)
-                .update(data)
+                .update({
+                    ...data,
+                    updated_at: r.now(),
+                })
                 .run();
         
         return result;
