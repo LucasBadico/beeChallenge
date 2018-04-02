@@ -44,6 +44,3 @@ exports.down = function (r, connection) {
       .run(connection)
       .catch(console.error)
 }
-
-// add data
-

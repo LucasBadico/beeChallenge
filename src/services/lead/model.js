@@ -1,20 +1,21 @@
 
 import { RethinkdbModel } from  '../../database/RethinkdbModel.js'
-
+import log from 'log'
 class LeadModel extends RethinkdbModel {
     constructor(opts){
         super(opts)
     }
 
     async getByEmail(email) {
-        return await this.dbtable()
-            .filter({ email: email.toLowerCase() })
-            .run()
+        const result = await this.dbtable()
+            .filter({ email: email })
+            .run();
+        return result
     }
 
-    async getByEmail(fullName) {
+    async getByFullName(fullName) {
         return await this.dbtable()
-            .filter({ fullName: fullName.toLowerCase() })
+            .filter({ fullName: fullName })
             .run()
     }
 
@@ -26,11 +27,13 @@ class LeadModel extends RethinkdbModel {
     }
    
     async appendDemand(id, { origin, destination }) {
-        return await this.dbtable()
+        const result = await this.dbtable()
             .get(id)
             .update(row => ({
                 demands: row('demands').append({ origin, destination }),
             }))
+            .run()
+        return result
     }
 }
 

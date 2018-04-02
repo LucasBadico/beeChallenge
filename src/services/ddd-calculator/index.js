@@ -2,7 +2,7 @@ import { Responder, Requester } from 'cote'
 const responder = new Responder({ name: 'ddd-calculator responder' })
 
 const parsePlan = (plan) => (str) => {
-    if (!str.match(/(\w+).(\d+)/) || !str.match(plan)) throw new Error('Plano Inválido')
+    if (!str.match(/(\w+).(\d+)/) || !str.match(plan)) throw Error('Plano Inválido')
     return parseInt(str.match(/(\d+)/)[0], 10)
 }
 

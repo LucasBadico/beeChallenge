@@ -50,7 +50,7 @@ describe('Price model - as model', () => {
         done()
     })
 
-    it('should \'model.getAll()\' retrieve a array with 6 items, whithout errors', async done => {
+    it('should \'model.getAll()\' retrieve a array with 6 items, without errors', async done => {
         expect.assertions(2)
         const result = await model.getAll()
         expect(result).toHaveLength(6)
@@ -58,7 +58,7 @@ describe('Price model - as model', () => {
         done()
     })
 
-    it('should \'model.getById()\' retrieve data on database, whithout error', async done => {
+    it('should \'model.getById()\' retrieve data on database, without error', async done => {
         expect.assertions(4)
         const all = await model.getAll()
         expect(all).toHaveLength(6)
@@ -74,7 +74,7 @@ describe('Price model - as model', () => {
         done()
     })
 
-    it('should \'model.getByOrigin()\' retrieve data on database, whithout error', async done => {
+    it('should \'model.getByOrigin()\' retrieve data on database, without error', async done => {
         expect.assertions(2)
         const result = await model.getByOrigin('011')
         expect(result).toHaveLength(3)
@@ -82,7 +82,7 @@ describe('Price model - as model', () => {
         done()
     })
 
-    it('should \'model.getByDestination()\' retrieve data on database, whithout error', async done => {
+    it('should \'model.getByDestination()\' retrieve data on database, without error', async done => {
         expect.assertions(2)
         const result = await model.getByDestination('011')
         expect(result).toHaveLength(3)
@@ -90,7 +90,7 @@ describe('Price model - as model', () => {
         done()
     })
 
-    it('should \'model.getByOriginAndDestination()\' retrieve data on database, whithout error', async done => {
+    it('should \'model.getByOriginAndDestination()\' retrieve data on database, without error', async done => {
         expect.assertions(2)
         const result = await model.getByOriginAndDestination({
             origin: '011',
