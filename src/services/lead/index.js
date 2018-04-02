@@ -1,6 +1,6 @@
 import { Responder } from 'cote'
 import Lead from './Lead'
-
+import log from 'log'
 const responder = new Responder({ name: 'Lead-service responder' })
 
 responder.on('say-hi-lead', _ => Promise.resolve('hi, from the lead-service'))
@@ -9,19 +9,20 @@ responder.on('leads-all', async (...args) => {
     return Lead.all(true)
 })
 
-
 responder.on('lead-add-demand', async ({
     fullName,
     email,
-    demand:{ origin, destination }
+    demand: { origin, destination }
 }) => {
     try {
         const lead = await Lead.findByEmail(email)
         await lead.addDemand({ origin, destination })
-        return lead.raw()
+        return Promise.resolve(lead.raw())
     } catch (err) {
-        console.log('Error on getByEmail', err)
-        if (err === 'Lead not finded') {
+        log(err)
+        const MESSAGE = 'Lead by email not finded - email'
+        const errMessage = err.message.slice(0, MESSAGE.length)
+        if (errMessage === MESSAGE) {
             const leadData = {
                 firstName: fullName.split(' ')[0],
                 fullName,
@@ -33,9 +34,9 @@ responder.on('lead-add-demand', async ({
             }
             const lead = new Lead(leadData)
             await lead.save()
-            return lead.raw()
+            return Promise.resolve(lead.raw())
         }
-        throw new Error(err)
+        throw Error(err)
     }
 })
 
