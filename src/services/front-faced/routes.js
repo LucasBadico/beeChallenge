@@ -78,6 +78,20 @@ router.post('/api/calculator/fale-mais', async (ctx, next) => {
     
 })
 
+router.post('/api/calculator/fale-mais-list', async (ctx, next) => {
+    // trocar essa logica pro responder
+    try {
+        const list = ctx.request.body
+        ctx.body = await requester.send({
+            type: 'calculator-fale-mais',
+            list,
+        })
+    } catch (err) {
+        ctx.throw(err, 400)
+    }
+    
+})
+
 router.post('/api/lead/add-demand', async (ctx, next) => {
     const lead = await requester.send({
         type: 'lead-add-demand',
