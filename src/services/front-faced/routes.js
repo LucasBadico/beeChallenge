@@ -37,6 +37,7 @@ router.post('/api/prices/minute', async (ctx, next) => {
 })
 
 router.post('/api/calculator/fale-mais', async (ctx, next) => {
+    // trocar essa logica pro responder
     const getCostByMinute = async (ctx) => {
         const {
             request: { 
@@ -47,7 +48,7 @@ router.post('/api/calculator/fale-mais', async (ctx, next) => {
         if (costByMinute) return { costByMinute }
         
         if (!origin && !destination) {
-            ctx.throw(new Error('Não é possivel Calcular, envie custo do minuto ou a origem e o destino.'), 400)
+            ctx.throw(Error('Não é possivel Calcular, envie custo do minuto ou a origem e o destino.'), 400)
         }
 
         return requester.send({
@@ -77,6 +78,17 @@ router.post('/api/calculator/fale-mais', async (ctx, next) => {
     
 })
 
+router.post('/api/lead/add-demand', async (ctx, next) => {
+    const lead = await requester.send({
+        type: 'lead-add-demand',
+        ...ctx.request.body,
+    })
+    ctx.body = lead
+})
 
+router.get('/api/leads/all', async (ctx, next) => {
+    const allLeads = await requester.send({ type: 'leads-all' }) 
+    ctx.body = allLeads
+})
 
 export default router

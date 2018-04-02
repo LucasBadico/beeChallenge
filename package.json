@@ -6,8 +6,9 @@
   "scripts": {
     "service-start": "BABEL_ENV=dev nodemon -e js,jsx,md,mustache --exec babel-node -- ",
     "migrate": "rethinkdb-migrate",
-    "migrate-up": "migrate --db=bechallenge up",
-    "migrate-down": "migrate --db=bechallenge down",
+    "migrate-up": "npm run migrate --db=beeChallenge up",
+    "migrate-down": "npm run migrate --db=beeChallenge down",
+    "migrate-create": "npm run migrate create",
     "build-services": "babel ./src -d build/services",
     "test": "jest --colors -b --verbose",
     "aceptance-test": "jest --colors -b --forceExit",
