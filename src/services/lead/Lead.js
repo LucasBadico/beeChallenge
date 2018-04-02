@@ -16,18 +16,18 @@ class Lead {
                 [],
             )
         } catch (err){
-            throw new Error(err)
+            throw Error(err)
         }
     }
 
     static async findById(id, asRaw) {
         try {
             const result = await model.getById(id)
-            if (R.isEmpty(result) || R.isNil(result)) throw new Error('Id not found', id)
+            if (R.isEmpty(result) || R.isNil(result)) throw `Id not found : ${id}`
             if (asRaw) return result
             return new Lead(result, true)
         } catch (err){
-            throw new Error(err)
+            throw Error(err)
         }
     }
 
@@ -35,17 +35,22 @@ class Lead {
         try {
             const result = await model.getByEmail(email)
             if (R.isEmpty(result) || R.isNil(result)) {
-                throw new Error('Lead not finded', email)
+                throw `Lead by email not finded - email: ${email}`
             }
             if (result.length > 1) {
-                throw new Error('Inconsistencia na busca')
+                throw `
+                Database error, there is two items with same email:
+                email - ${email}
+                ids -
+                ${result.map(item => item.id).join(', ')}
+                `
             }
             if (asRaw) {
                 return result[0]
             }
-            return new User(result[0], true)
+            return new Lead(result[0], true)
         } catch (err) {
-            throw new Error(err)
+            throw Error(err)
         }
     }
 
@@ -53,7 +58,7 @@ class Lead {
         try {
             const result = await model.getByEmail(fullName)
             if (R.isEmpty(result) || R.isNil(result)) {
-                throw new Error('Lead not finded', fullName)
+                throw Error('Lead not finded', fullName)
             }
             if (asRaw) {
                 return result
@@ -63,7 +68,7 @@ class Lead {
                 [],
             )
         } catch (err) {
-            throw new Error(err)
+            throw Error(err)
         }
     }
 
@@ -72,7 +77,7 @@ class Lead {
         try {
             const result = await model.getByDemand({ origin, destination })
             if (R.isEmpty(result) || R.isNil(result)) {
-                throw new Error('Lead not finded', { origin, destination })
+                throw Error('Lead not finded', { origin, destination })
             }
             if (asRaw) {
                 return result
@@ -82,24 +87,25 @@ class Lead {
                 [],
             )
         } catch (err) {
-            throw new Error(err)
+            throw Error(err)
         }
     }
 
     async addDemand({ origin, destination }) {
         try {
             if (!this.id) {
-                throw new Error('Lead not instantiated yet')
+                throw 'Lead not instantiated yet'
             }
-            await appendDemand(this.id, { origin, destination })
+
             
+            await model.appendDemand(this.id, { origin, destination })
             if (this.demands && this.demands instanceof Array) {
                 this.demands.push({ origin, destination })
             } else {
                 this.demands = [ { origin, destination } ]
             }
         } catch (err) {
-            throw new Error(err)
+            throw Error(err)
         } finally {
             return this
         }
@@ -107,7 +113,7 @@ class Lead {
 
     async save() {
         let result
-        const data = R.pick(this, model.getSchema())
+        const data = R.pick(model.getSchema(), this)
 
         try {
             if (this.id) {
@@ -116,17 +122,17 @@ class Lead {
                 result = await model.create(data);
             }
             if (R.isEmpty(result) || R.isNil(result)) {
-                throw new Error('operation error', !!this.id ? 'update' : 'create')
+                throw Error('operation error', !!this.id ? 'update' : 'create')
             }
         } catch (err) {
-            throw new Error(err)
+            throw Error(err)
         } finally {
             return this
         }
     }
 
     raw() {
-        return R.pick(this, model.getSchema())
+        return R.pick(model.getSchema(), this)
     }
 
 }

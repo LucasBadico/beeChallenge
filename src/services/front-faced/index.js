@@ -14,11 +14,11 @@ const io = socket(server)
 
 app.keys = ['im a newer secret', 'i like turtle'];
 
-app.use(bodyParser({
-    extendTypes: {
-      json: ['text/plain'],
-    }
-  }))
+app.use(
+    bodyParser({
+        extendTypes: { json: ['text/plain'] }
+    })
+)
 app.use(cors({ origin: '*' }))
 app.use(router.routes())
 app.use(router.allowedMethods())
